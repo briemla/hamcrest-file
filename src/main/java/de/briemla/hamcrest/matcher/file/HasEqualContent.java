@@ -1,7 +1,5 @@
 package de.briemla.hamcrest.matcher.file;
 
-import static de.briemla.hamcrest.matcher.file.FileUtil.contentOf;
-
 import java.io.File;
 import java.util.List;
 
@@ -25,8 +23,8 @@ public class HasEqualContent extends TypeSafeMatcher<File> {
 
 	@Override
 	protected boolean matchesSafely(File file) {
-		List<String> expectedContent = contentOf(expected);
-		List<String> fileContent = contentOf(file);
+		List<String> expectedContent = Content.of(expected);
+		List<String> fileContent = Content.of(file);
 		return expectedContent.equals(fileContent);
 	}
 

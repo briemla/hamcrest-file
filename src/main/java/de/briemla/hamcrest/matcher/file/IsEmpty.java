@@ -1,7 +1,5 @@
 package de.briemla.hamcrest.matcher.file;
 
-import static de.briemla.hamcrest.matcher.file.FileUtil.contentOf;
-
 import java.io.File;
 import java.util.List;
 
@@ -17,12 +15,12 @@ public class IsEmpty extends TypeSafeMatcher<File> {
 
 	@Override
 	protected boolean matchesSafely(File item) {
-		List<String> content = contentOf(item);
+		List<String> content = Content.of(item);
 		return content.isEmpty();
 	}
 
 	@Override
 	protected void describeMismatchSafely(File item, Description mismatchDescription) {
-		mismatchDescription.appendText("file contains: " + contentOf(item));
+		mismatchDescription.appendText("file contains: " + Content.of(item));
 	}
 }

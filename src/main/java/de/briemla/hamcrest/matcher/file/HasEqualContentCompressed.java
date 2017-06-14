@@ -1,8 +1,5 @@
 package de.briemla.hamcrest.matcher.file;
 
-import static de.briemla.hamcrest.matcher.file.FileUtil.contentOf;
-import static de.briemla.hamcrest.matcher.file.FileUtil.contentOfCompressed;
-
 import java.io.File;
 import java.util.List;
 
@@ -26,8 +23,8 @@ public class HasEqualContentCompressed extends TypeSafeMatcher<File> {
 
 	@Override
 	protected boolean matchesSafely(File file) {
-		List<String> expectedContent = contentOfCompressed(expected);
-		List<String> fileContent = contentOf(file);
+		List<String> expectedContent = Content.ofCompressed(expected);
+		List<String> fileContent = Content.of(file);
 		return expectedContent.equals(fileContent);
 	}
 

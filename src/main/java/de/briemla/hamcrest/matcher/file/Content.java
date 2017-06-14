@@ -16,9 +16,9 @@ import java.util.List;
 
 import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream;
 
-public class FileUtil {
+public class Content {
 
-	static List<String> contentOf(File item) {
+	static List<String> of(File item) {
 		try {
 			return Files.readAllLines(item.toPath());
 		} catch (IOException exception) {
@@ -26,7 +26,7 @@ public class FileUtil {
 		}
 	}
 	
-	static List<String> contentOfCompressed(File item) {
+	static List<String> ofCompressed(File item) {
 		ArrayList<String> content = new ArrayList<>();
 		try(BufferedReader reader = new BufferedReader(new InputStreamReader(uncompressBZip2From(new FileInputStream(item))))) {
 			String line = null;

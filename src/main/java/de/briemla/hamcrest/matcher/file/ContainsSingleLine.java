@@ -1,7 +1,5 @@
 package de.briemla.hamcrest.matcher.file;
 
-import static de.briemla.hamcrest.matcher.file.FileUtil.contentOf;
-
 import java.io.File;
 import java.util.List;
 
@@ -25,12 +23,12 @@ public class ContainsSingleLine extends TypeSafeMatcher<File> {
 
 	@Override
 	protected boolean matchesSafely(File item) {
-		List<String> content = contentOf(item);
+		List<String> content = Content.of(item);
 		return 1 == content.size() && line.equals(content.get(singleLine));
 	}
 
 	@Override
 	protected void describeMismatchSafely(File item, Description mismatchDescription) {
-		mismatchDescription.appendText("contains: " + contentOf(item));
+		mismatchDescription.appendText("contains: " + Content.of(item));
 	}
 }
