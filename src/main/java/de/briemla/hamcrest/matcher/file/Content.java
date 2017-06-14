@@ -6,10 +6,10 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +21,8 @@ public class Content {
 	static List<String> of(File item) {
 		try {
 			return Files.readAllLines(item.toPath());
-		} catch (IOException exception) {
-			throw new RuntimeException(exception);
+		} catch (IOException cause) {
+			throw new UncheckedIOException(cause);
 		}
 	}
 	
@@ -33,10 +33,8 @@ public class Content {
 			while((line = reader.readLine()) != null) {
 				content.add(line);
 			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (IOException cause) {
+			throw new UncheckedIOException(cause);
 		}
 		return content;
 	}
